@@ -1,0 +1,29 @@
+[
+    {
+        "model": "whohaswhatapi.Item",
+        "pk": 1,
+        "fields":{
+            "name": "Weed Eater",
+            "owner": 1,
+            "price_per_day": 5.00,
+            "price_per_week": 30.00,
+            "rented_currently": false,
+            "condition": 4,
+            "item_image": ""
+        }
+    },
+    {
+        "model": "whohaswhatapi.Item",
+        "pk": 2,
+        "fields":{
+            "name": "Kitchen Sponge Set",
+            "owner": 2,
+            "price_per_day": 2.00,
+            "price_per_week": 10.00,
+            "rented_currently": true,
+            "condition": 2,
+            "item_image": ""
+        }
+    }
+
+]

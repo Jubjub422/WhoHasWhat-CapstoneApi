@@ -1,0 +1,34 @@
+[
+    {
+        "model": "whohaswhatapi.Condition",
+        "pk": 1,
+        "fields":{
+            "condition": "Poor",
+            "description": "Needs to be repaired by owner, not able to be rented currently."
+        }
+    },
+    {
+        "model": "whohaswhatapi.Condition",
+        "pk": 2,
+        "fields":{
+            "condition": "Passable",
+            "description": "Will soon need to be repaired/replaced."
+        }
+    },
+    {
+        "model": "whohaswhatapi.Condition",
+        "pk": 3,
+        "fields":{
+            "condition": "Good",
+            "description": "Used, but still good to go!"
+        }
+    },
+    {
+        "model": "whohaswhatapi.Condition",
+        "pk": 4,
+        "fields":{
+            "condition": "Great",
+            "description": "Might as well be brand new!"
+        }
+    }
+]

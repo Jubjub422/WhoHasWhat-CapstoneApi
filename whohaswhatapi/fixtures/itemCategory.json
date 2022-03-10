@@ -1,0 +1,18 @@
+[
+    {
+        "model": "whohaswhatapi.ItemCategory",
+        "pk": 1,
+        "fields":{
+            "item": 1,
+            "category": 1
+        }
+    },
+    {
+        "model": "whohaswhatapi.ItemCategory",
+        "pk": 2,
+        "fields":{
+            "item": 2,
+            "category": 3
+        }
+    }
+]

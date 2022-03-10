@@ -1,0 +1,35 @@
+[
+    {
+        "model": "whohaswhatapi.Lender",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "address": "1234 Nunya Biz Lane",
+            "is_owner": true,
+            "is_renter": true,
+            "profile_image_url": "https://previews.123rf.com/images/kritchanut/kritchanut1406/kritchanut140600089/29213191-femmina-avatar-profilo-sagoma-immagini.jpg"
+        }
+    },
+    {
+        "model": "whohaswhatapi.Lender",
+        "pk": 2,
+        "fields": {
+            "user": 2,
+            "address": "1245 Nunya Biz Lane",
+            "is_owner": true,
+            "is_renter": false,
+            "profile_image_url": "https://st.depositphotos.com/2218212/2938/i/950/depositphotos_29387653-stock-photo-facebook-profile.jpg"
+        }
+    },
+    {
+        "model": "whohaswhatapi.Lender",
+        "pk": 3,
+        "fields": {
+            "user": 3,
+            "address": "100 Nunya Biz Lane",
+            "is_owner": false,
+            "is_renter": true,
+            "profile_image_url": "https://previews.123rf.com/images/kritchanut/kritchanut1406/kritchanut140600089/29213191-femmina-avatar-profilo-sagoma-immagini.jpg"
+        }
+    }
+]

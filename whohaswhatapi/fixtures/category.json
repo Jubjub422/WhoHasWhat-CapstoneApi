@@ -1,0 +1,23 @@
+[
+    {
+        "model": "whohaswhatapi.Category",
+        "pk": 1,
+        "fields":{
+            "name": "Yard Tools"
+        }
+    },
+    {
+        "model": "whohaswhatapi.Category",
+        "pk": 2,
+        "fields":{
+            "name": "Kitchen Supplies"
+        }
+    },
+    {
+        "model": "whohaswhatapi.Category",
+        "pk": 3,
+        "fields":{
+            "name": "House Supplies"
+        }
+    }
+]
