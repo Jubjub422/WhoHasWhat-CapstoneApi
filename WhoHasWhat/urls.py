@@ -17,10 +17,14 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
-from whohaswhatapi.views import(ItemView, login_user, register_user)
+from whohaswhatapi.views import(ItemView, login_user, register_user, CategoryView,
+                                LenderView, ConditionView )
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'items',ItemView, 'item')
+router.register(r'lenders', LenderView, 'lender')
+router.register(r'conditions', ConditionView, 'condition')
+router.register(r'categories', CategoryView, 'category')
 
 urlpatterns = [
     path('register', register_user),

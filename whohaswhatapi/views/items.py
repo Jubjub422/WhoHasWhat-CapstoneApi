@@ -3,6 +3,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
 from whohaswhatapi.models import Item
+from whohaswhatapi.models.Lender import Lender
 
 
 class ItemView(ViewSet):
@@ -25,10 +26,11 @@ class ItemView(ViewSet):
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
     def create(self, request):
         """Owner creates a new item"""
+        owner = Lender.objects.get(user=request.auth.user)
         try:
             serializer = CreateItemSerializer(data=request.data)
             serializer.is_valid(raise_exception=True)
-            serializer.save()
+            serializer.save(owner=owner)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except ValidationError as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_400_BAD_REQUEST)
