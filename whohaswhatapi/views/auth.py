@@ -33,7 +33,7 @@ def login_user(request):
                 'valid': True,
                 'token': token.key
             }
-        else: 
+        else:
             data = { 'valid': False }
         return Response(data)
     else:
@@ -56,9 +56,7 @@ def register_user(request):
         username=request.data['username'],
         password=request.data['password'],
         first_name=request.data['first_name'],
-        last_name=request.data['last_name'],
-        email=request.data['email'],
-        address= request.data['address']
+        last_name=request.data['last_name']
         
     )
     
@@ -71,9 +69,11 @@ def register_user(request):
     # Save the data to the database with the save() method
     # Now save the extra info in the rareapi_rare_user table
     lender_user = Lender.objects.create(
-        bio=request.data['bio'],
         profile_image_url=request.data['profile_image_url'],
         user=new_user,
+        address= request.data['address'],
+        is_owner= request.data['is_owner'],
+        is_renter= request.data['is_renter']
         # profile_pic=data
     )
 

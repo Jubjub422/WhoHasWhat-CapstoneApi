@@ -7,3 +7,4 @@ class Lender(models.Model):
     is_owner = models.BooleanField(default=False)
     is_renter = models.BooleanField(default = True)
     profile_image_url = models.URLField(max_length=500)
+    active = models.BooleanField(default=True)
