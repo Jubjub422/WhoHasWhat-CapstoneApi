@@ -9,3 +9,4 @@ class Item(models.Model):
     rented_currently = models.BooleanField(default=False)
     condition = models.ForeignKey("Condition", on_delete=models.SET_NULL, null=True)
     item_image = models.URLField(max_length=400)
+    categories = models.ManyToManyField("Category", through="ItemCategory", related_name="categories")

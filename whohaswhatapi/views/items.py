@@ -33,7 +33,8 @@ class ItemView(ViewSet):
         try:
             serializer = CreateItemSerializer(data=request.data)
             serializer.is_valid(raise_exception=True)
-            serializer.save(owner=owner)
+            post = serializer.save(owner=owner)
+            post.categories.set(request.data["categories"])
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except ValidationError as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_400_BAD_REQUEST)
