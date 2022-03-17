@@ -5,3 +5,4 @@ from .Lender import Lender
 from .Rating import Rating
 from .RentedItem import RentedItem
 from .ItemCategory import ItemCategory
+from .Rental_Request import RequestQueue

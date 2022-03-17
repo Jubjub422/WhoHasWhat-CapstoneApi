@@ -1,0 +1,12 @@
+[
+    {
+        "model": "whohaswhatapi.RentedItem",
+        "pk": 1,
+        "fields":{
+            "renter": 1,
+            "rental_item": 2,
+            "rented_on": "2022-02-12",
+            "return_by": "2022-02-26"
+        }
+    }
+]

@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework import serializers, status
 from whohaswhatapi.models import Item
 from whohaswhatapi.models.Lender import Lender
+from rest_framework.decorators import action
 
 
 class ItemView(ViewSet):
@@ -54,6 +55,20 @@ class ItemView(ViewSet):
         item.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
     
+    @action(methods=['put'], detail=True)
+    def approve_rent(self, request, pk):
+        """lender can rent item from owner"""
+        item=Item.objects.get(pk=pk)
+        item.rented_currently=True
+        item.save()
+        return Response({'message': 'Item rental has been approved'})
+    
+    @action(methods=['put'], detail=True)
+    def return_item(self, request, pk):
+        """renter can return item to owner"""
+        item = Item.objects.get(pk=pk)
+        item.rented_currently=False
+        item.save()
     
     
     

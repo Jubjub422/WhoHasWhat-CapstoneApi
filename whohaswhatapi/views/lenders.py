@@ -23,12 +23,11 @@ class LenderView(ViewSet):
         
     @action(methods=['get'], detail=False)
     def current(self, request):
-        """Only get actors back that are currently active on a book"""
-
+        """only get the current user"""
         lender_user = Lender.objects.get(user=request.auth.user)
         serializer = LenderSerializer(lender_user)
         return Response(serializer.data)
-
+    
 
 class LenderSerializer(serializers.ModelSerializer):
     class Meta:
@@ -40,3 +39,4 @@ class CreateLenderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lender
         fields = ('user', 'address', 'is_owner', 'is_renter', 'profile_img_url')
+        
