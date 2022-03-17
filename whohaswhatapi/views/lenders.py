@@ -3,6 +3,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
 from whohaswhatapi.models import Lender
+from rest_framework.decorators import action
 
 class LenderView(ViewSet):
     def list(self, request):
@@ -20,13 +21,20 @@ class LenderView(ViewSet):
         except Lender.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
         
+    @action(methods=['get'], detail=False)
+    def current(self, request):
+        """Only get actors back that are currently active on a book"""
+
+        lender_user = Lender.objects.get(user=request.auth.user)
+        serializer = LenderSerializer(lender_user)
+        return Response(serializer.data)
 
 
 class LenderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lender
         fields = "__all__"
-        depth = 1
+        depth = 2
         
 class CreateLenderSerializer(serializers.ModelSerializer):
     class Meta:
