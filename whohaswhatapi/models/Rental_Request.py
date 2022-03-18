@@ -9,3 +9,4 @@ class RequestQueue(models.Model):
     item = models.ForeignKey(
         "Item", on_delete=models.CASCADE)
     approved = models.BooleanField(default=False)
+    returned = models.BooleanField(default=False)

@@ -27,6 +27,14 @@ class LenderView(ViewSet):
         lender_user = Lender.objects.get(user=request.auth.user)
         serializer = LenderSerializer(lender_user)
         return Response(serializer.data)
+    @action(methods=['put'], detail=True)
+    def become_owner(self, request, pk):
+        """Change renter to owner"""
+        user= Lender.objects.get(pk=pk)
+        user.is_owner = True
+        user.save()
+        return Response({'message': 'You are now an owner!'})
+        
     
 
 class LenderSerializer(serializers.ModelSerializer):
