@@ -7,8 +7,7 @@ from whohaswhatapi.models.Lender import Lender
 
 
 class RentedItemView(ViewSet):
-    
-    
+
     def list(self, request):
         """
         Handle GET requests to get all items
@@ -16,7 +15,7 @@ class RentedItemView(ViewSet):
         rented = RentedItem.objects.all()
         serializer = RentedItemSerializer(rented, many=True)
         return Response(serializer.data)
-    
+
     def retrieve(self, request, pk):
         """handles the GET for a single rentedItem"""
         try:
@@ -25,7 +24,7 @@ class RentedItemView(ViewSet):
             return Response(serializer.data)
         except RentedItem.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
-    
+
     def create(self, request):
         """Owner creates a new rentedItem"""
         renter = Lender.objects.get(user=request.auth.user)
@@ -36,7 +35,7 @@ class RentedItemView(ViewSet):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except ValidationError as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_400_BAD_REQUEST)
-    
+
     def update(self, request, pk):
         """update an individual rentedItem"""
         try:
@@ -47,16 +46,14 @@ class RentedItemView(ViewSet):
             return Response(None, status=status.HTTP_204_NO_CONTENT)
         except ValidationError as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_400_BAD_REQUEST)
-    
+
     def destroy(self, request, pk):
         """delete an rentedItem"""
         rented = RentedItem.objects.get(pk=pk)
         rented.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
-    
-    
-    
-    
+
+
 class RentedItemSerializer(serializers.ModelSerializer):
     """
     JSON serializer for all rentedItems
@@ -65,7 +62,8 @@ class RentedItemSerializer(serializers.ModelSerializer):
         model = RentedItem
         fields = "__all__"
         depth = 2
-        
+
+
 class CreateRentedItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = RentedItem
