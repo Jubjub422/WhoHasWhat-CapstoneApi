@@ -19,10 +19,10 @@ from django.conf.urls import include
 from rest_framework import routers
 
 from whohaswhatapi.views import(ItemView, login_user, register_user, CategoryView,
-                                LenderView, ConditionView, RentedItemView, RentalQueueView )
+                                LenderView, ConditionView, RentedItemView, RentalQueueView)
 
 router = routers.DefaultRouter(trailing_slash=False)
-router.register(r'items',ItemView, 'item')
+router.register(r'items', ItemView, 'item')
 router.register(r'lenders', LenderView, 'lender')
 router.register(r'conditions', ConditionView, 'condition')
 router.register(r'categories', CategoryView, 'category')

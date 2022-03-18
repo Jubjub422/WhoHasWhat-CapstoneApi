@@ -47,33 +47,34 @@ class RentalQueueView(ViewSet):
             return Response(None, status=status.HTTP_204_NO_CONTENT)
         except RequestQueue.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
-   
+
     @action(methods=['put'], detail=True)
     def approve(self, request, pk):
         """lender can rent item from owner"""
-        item=Item.objects.get(pk=request.data["id"])
-        request=RequestQueue.objects.get(pk=pk)
-        request.approved=True
-        item.rented_currently=True
+        item = Item.objects.get(pk=request.data["id"])
+        request = RequestQueue.objects.get(pk=pk)
+        request.approved = True
+        item.rented_currently = True
         request.save()
         item.save()
         return Response({'message': 'Item rental has been approved'})
-    
+
     @action(methods=['put'], detail=True)
     def return_item(self, request, pk):
         """renter can return item to owner"""
         item = Item.objects.get(pk=request.data["id"])
         request = RequestQueue.objects.get(pk=pk)
-        request.returned=True
-        item.rented_currently=False
+        request.returned = True
+        item.rented_currently = False
         item.save()
         request.save()
         return Response({'message': 'Item has been returned'})
-    
+
+
 class RequestQueueSerializer(serializers.ModelSerializer):
     class Meta:
         model = RequestQueue
-        fields ="__all__"
+        fields = "__all__"
         depth = 2
 
 

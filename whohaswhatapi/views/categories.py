@@ -8,7 +8,7 @@ from whohaswhatapi.models import Category
 
 
 class CategoryView(ViewSet):
-    
+
     def retrieve(self, request, pk):
         """Handle GET requests for single category
 
@@ -16,9 +16,9 @@ class CategoryView(ViewSet):
             Response -- JSON serialized category
         """
         category = Category.objects.get(pk=pk)
-        serializer=CategorySerializer(category)
+        serializer = CategorySerializer(category)
         return Response(serializer.data)
-    
+
     def list(self, request):
         """Handle GET requests to get all categories
 
@@ -28,7 +28,7 @@ class CategoryView(ViewSet):
         category = Category.objects.order_by('name')
         serializer = CategorySerializer(category, many=True)
         return Response(serializer.data)
-    
+
     def create(self, request):
         """Handle POST ops
 
@@ -42,6 +42,7 @@ class CategoryView(ViewSet):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except ValidationError as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_400_BAD_REQUEST)
+
     def update(self, request, pk):
         """Handle PUT requests for a category
 
@@ -56,7 +57,7 @@ class CategoryView(ViewSet):
             return Response(None, status=status.HTTP_204_NO_CONTENT)
         except ValidationError as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_400_BAD_REQUEST)
-    
+
     def destroy(self, request, pk):
         """Handle DELETE requests for category
 
@@ -69,8 +70,9 @@ class CategoryView(ViewSet):
             return Response(None, status=status.HTTP_204_NO_CONTENT)
         except Category.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
-        except IntegrityError as ix:
-            return Response({'message': ix.args[0]}, status=status.HTTP_304_NOT_MODIFIED)
+        except IntegrityError as i_x:
+            return Response({'message': i_x.args[0]}, status=status.HTTP_304_NOT_MODIFIED)
+
 
 class CategorySerializer(serializers.ModelSerializer):
     """JSON serializer for game types
