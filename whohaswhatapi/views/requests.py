@@ -51,7 +51,7 @@ class RentalQueueView(ViewSet):
     @action(methods=['put'], detail=True)
     def approve(self, request, pk):
         """lender can rent item from owner"""
-        item = Item.objects.get(pk=request.data["id"])
+        item = Item.objects.get(pk=request.data["item"]["id"])
         request = RequestQueue.objects.get(pk=pk)
         request.approved = True
         item.rented_currently = True
@@ -62,7 +62,7 @@ class RentalQueueView(ViewSet):
     @action(methods=['put'], detail=True)
     def return_item(self, request, pk):
         """renter can return item to owner"""
-        item = Item.objects.get(pk=request.data["id"])
+        item = Item.objects.get(pk=request.data["item"]["id"])
         request = RequestQueue.objects.get(pk=pk)
         request.returned = True
         item.rented_currently = False
