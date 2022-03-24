@@ -79,4 +79,4 @@ class ItemSerializer(serializers.ModelSerializer):
 class CreateItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
-        fields = ('name', 'price_per_day', 'price_per_week', 'condition')
+        fields = ('name', 'price_per_day', 'price_per_week', 'condition', 'item_image')
