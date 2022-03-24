@@ -1,1 +1,1 @@
-web: gunicorn who-has-what.wsgi --log-file -
+web: gunicorn WhoHasWhat.wsgi --log-file -
